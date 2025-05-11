@@ -1,0 +1,40 @@
+:root {
+    font-family: sans-serif;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    height: 100%;
+    margin: 0;
+}
+
+.icon {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+.icon.small {
+    width: 1rem;
+    height: 1rem;
+}
+
+#dashboard {
+    grid-column: 1 / 2;
+}
+
+#list-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#tasks-container {
+    grid-column: 2 / 3;
+}
