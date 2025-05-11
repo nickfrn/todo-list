@@ -3,9 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Template</title>
+    <title>To-do List</title>
 </head>
 <body>
-    
+    <div id="dashboard">
+        <h1 id="logo">To-Do List</h1>
+
+        <div id="upcoming">
+            <h2 class="upcoming-category">All tasks</h2>
+            <h2 class="upcoming-category">Today</h2>
+            <h2 class="upcoming-category">This Week</h2>
+            <h2 class="upcoming-category">Completed</h2>
+        </div>
+
+        <div id="lists">
+            <div id="list-title">
+                <h3>My lists</h3>
+                <img src="./assets/plus.png" alt="add list" class="icon small" id="add-btn">
+            </div>
+
+            <div class="list-item">
+                <h2>Default</h2>
+                <div class="list-icons">
+                    <img src="./assets/pencil.png" alt="edit list" class="icon">
+                    <img src="./assets/delete.png" alt="delete list" class="icon">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="tasks-container">
+            <button id="add-task">+ add task</button>
+    </div>
 </body>
 </html>
