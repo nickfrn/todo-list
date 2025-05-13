@@ -12,8 +12,8 @@
             <label for="listName">List name:</label>
             <input type="text" name="listName" id="list-name">
 
-            <button id="confirm">Confirm</button>
-            <button id="cancel">Cancel</button>
+            <button id="list-confirm">Confirm</button>
+            <button id="list-cancel">Cancel</button>
         </form>
     </dialog>
 
@@ -30,16 +30,10 @@
         <div id="lists">
             <div id="list-title">
                 <h3>My lists</h3>
-                <img src="./assets/plus.png" alt="add list" class="icon small" id="add-btn">
+                <img src="./assets/plus.png" alt="add list" class="icon small" id="addListModal">
             </div>
 
-            <div class="list-item">
-                <h2>Default</h2>
-                <div class="list-icons">
-                    <img src="./assets/pencil.png" alt="edit list" class="icon">
-                    <img src="./assets/delete.png" alt="delete list" class="icon">
-                </div>
-            </div>
+            <div id="lists-container"></div>
         </div>
     </div>
 
