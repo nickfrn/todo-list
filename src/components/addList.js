@@ -6,11 +6,9 @@ export function showListModal() {
     listModal.showModal();
 }
 
-export function confirmListAdd(event) {
-    event.preventDefault();
-
+export function confirmListAdd() {
     const name = document.querySelector('#list-name');
-    const newList = createList(name);
+    const newList = createList(name.value);
 
     listModal.close();
 
