@@ -1,5 +1,5 @@
 import './styles/main.css';
-import { showListModal, confirmListAdd, cancelListAdd, renderList } from './components/listUtilities.js';
+import { showListModal, confirmListAdd, cancelListAdd, renderList, editList, deleteList } from './components/listUtilities.js';
 
 const lists = [];
 
@@ -18,7 +18,7 @@ listConfirm.addEventListener('click', (event) => {
 
     listContainer.innerHTML = '';
     lists.forEach((list) => {
-        let rendered = renderList(list.name);
+        let rendered = renderList(list);
         listContainer.appendChild(rendered);
     });
 });
