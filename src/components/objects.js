@@ -1,7 +1,9 @@
 export function createList(name = 'Default') {
+    const id = crypto.randomUUID();
+    
     const tasksList = [];
 
     const getTasks = () => tasksList;
 
-    return {name, getTasks};
+    return {id, name, getTasks};
 }
