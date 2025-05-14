@@ -1,6 +1,5 @@
 import './styles/main.css';
-import { showListModal, confirmListAdd, cancelListAdd } from './components/listUtilities.js';
-import { renderList } from './components/renderLists.js';
+import { showListModal, confirmListAdd, cancelListAdd, renderList } from './components/listUtilities.js';
 
 const lists = [];
 
