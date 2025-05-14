@@ -19,3 +19,11 @@ export function cancelListAdd(event) {
     event.preventDefault();
     listModal.close();
 }
+
+export function deleteList() {
+
+}
+
+export function editList() {
+    
+}
