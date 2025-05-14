@@ -7,7 +7,17 @@
 </head>
 
 <body>
-    <dialog id="listDialog">
+    <dialog id="createListDialog">
+        <form>
+            <label for="listName">List name:</label>
+            <input type="text" name="listName" id="list-name">
+
+            <button id="list-confirm">Confirm</button>
+            <button id="list-cancel">Cancel</button>
+        </form>
+    </dialog>
+
+    <dialog id="editListDialog">
         <form>
             <label for="listName">List name:</label>
             <input type="text" name="listName" id="list-name">
