@@ -1,9 +1,11 @@
 import './styles/main.css';
-import { showListModal, confirmListAdd, cancelListAdd, renderList, editList, deleteList } from './components/listUtilities.js';
+import { showListModal, confirmListAdd, cancelListAdd, deleteList, confirmEditList } from './components/listUtilities.js';
 
-const listModalBtn = document.querySelector('#addListModal');
-const listConfirm = document.querySelector('#list-confirm');
-const listCancel = document.querySelector('#list-cancel');
+const listModalBtn = document.querySelector('#add-list-modal');
+const listConfirm = document.querySelector('#create-list-confirm');
+const listCancel = document.querySelector('#create-list-cancel');
+const editListConf = document.querySelector('#edit-list-confirm');
+const editListCanc = document.querySelector('edit-list-cancel');
 
 listModalBtn.addEventListener('click', showListModal);
 listConfirm.addEventListener('click', (event) => {
@@ -12,3 +14,8 @@ listConfirm.addEventListener('click', (event) => {
 });
 
 listCancel.addEventListener('click', cancelListAdd);
+
+editListConf.addEventListener('click', (event) => {
+    event.preventDefault();
+    confirmEditList(event);
+});
