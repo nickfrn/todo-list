@@ -2,15 +2,23 @@ import { createList } from "./objects.js";
 import edit from '../assets/pencil.png';
 import del from '../assets/delete.png';
 
+let lists = [];
+
 const listModal = document.querySelector('#createListDialog');
+const listContainer = document.querySelector('#lists-container');
 
 export function confirmListAdd() {
     const name = document.querySelector('#list-name');
     const newList = createList(name.value);
 
     listModal.close();
+    lists.push(newList);
 
-    return newList;
+    listContainer.innerHTML = '';
+    lists.forEach((list) => {
+        let rendered = renderList(list);
+        listContainer.appendChild(rendered);
+    });
 }
 
 export function cancelListAdd(event) {
@@ -38,6 +46,11 @@ export function renderList(list) {
     deleteIcon.src = del;
     deleteIcon.classList.add('icon');
     deleteIcon.classList.add('delete');
+    deleteIcon.addEventListener('click', (event, listsArray) => {
+        listsArray = deleteList(event, listsArray);
+
+        listsArray = listsArray.filter((list) => list.id !== listId);
+    });
 
     iconsDiv.append(editIcon, deleteIcon);
     listDiv.append(listName, iconsDiv);
@@ -49,8 +62,19 @@ export function showListModal() {
     listModal.showModal();
 }
 
-export function deleteList(listsArray) {
+export function deleteList(event) {
+    let listItem = event.target.closest('.list-item');
+    let listId = listItem.getAttribute('data-id');
 
+    lists = lists.filter((list) => list.id !== listId);
+
+    listContainer.innerHTML = '';
+    lists.forEach((list) => {
+        let rendered = renderList(list);
+        listContainer.appendChild(rendered);
+    });
+
+    return lists;
 }
 
 export function editList() {
