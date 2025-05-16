@@ -5,11 +5,12 @@ import del from '../assets/delete.png';
 let lists = [];
 
 const listModal = document.querySelector('#createListDialog');
+const editListModal = document.querySelector('#editListDialog');
 const listContainer = document.querySelector('#lists-container');
 
 export function confirmListAdd() {
-    const name = document.querySelector('#list-name');
-    const newList = createList(name.value);
+    const name = document.querySelector('#list-name').value;
+    const newList = createList(name);
 
     listModal.close();
     lists.push(newList);
@@ -41,6 +42,8 @@ export function renderList(list) {
     editIcon.src = edit;
     editIcon.classList.add('icon');
     editIcon.classList.add('edit');
+    editIcon.setAttribute('data-type', 'edit-list');
+    editIcon.addEventListener('click', showListModal);
 
     const deleteIcon = document.createElement('img');
     deleteIcon.src = del;
@@ -58,8 +61,12 @@ export function renderList(list) {
     return listDiv;
 }
 
-export function showListModal() {
-    listModal.showModal();
+export function showListModal(event) {
+    if (event.target.id === 'add-list-modal') {
+        listModal.showModal();
+    } else if (event.target.getAttribute('data-type') === 'edit-list') {
+        editListModal.showModal();
+    } 
 }
 
 export function deleteList(event) {
@@ -77,6 +84,22 @@ export function deleteList(event) {
     return lists;
 }
 
-export function editList() {
+export function confirmEditList(event) {
+    let listItem = event.target.closest('.list-item');
 
+    let listId = listItem.getAttribute('data-id');
+
+    let listIndex = lists.findIndex(list => list.id === listId);
+
+    let newName = document.querySelector('#new-list-name').value;
+
+    lists[listIndex].name = newName;
+
+    editListModal.close();
+
+    listContainer.innerHTML = '';
+    lists.forEach((list) => {
+        let rendered = renderList(list);
+        listContainer.appendChild(rendered);
+    });
 }
