@@ -17,7 +17,6 @@ function refreshListUI() {
     });
 }
 
-// Append a new list to the array and render the array
 export function confirmListAdd() {
     const name = document.querySelector('#list-name').value;
     const newList = createList(name);
@@ -56,11 +55,7 @@ export function renderList(list) {
     deleteIcon.src = del;
     deleteIcon.classList.add('icon');
     deleteIcon.classList.add('delete');
-    deleteIcon.addEventListener('click', (event, listsArray) => {
-        listsArray = deleteList(event, listsArray);
-
-        listsArray = listsArray.filter((list) => list.id !== listId);
-    });
+    deleteIcon.addEventListener('click', deleteList);
 
     iconsDiv.append(editIcon, deleteIcon);
     listDiv.append(listName, iconsDiv);
