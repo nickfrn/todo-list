@@ -8,18 +8,25 @@ const listModal = document.querySelector('#createListDialog');
 const editListModal = document.querySelector('#editListDialog');
 const listContainer = document.querySelector('#lists-container');
 
-export function confirmListAdd() {
-    const name = document.querySelector('#list-name').value;
-    const newList = createList(name);
-
-    listModal.close();
-    lists.push(newList);
-
+// Inner function to refresh the UI when a change is made to the lists
+function refreshListUI() {
     listContainer.innerHTML = '';
     lists.forEach((list) => {
         let rendered = renderList(list);
         listContainer.appendChild(rendered);
     });
+}
+
+// Append a new list to the array and render the array
+export function confirmListAdd() {
+    const name = document.querySelector('#list-name').value;
+    const newList = createList(name);
+
+    lists.push(newList);
+    name = ''; // Clear field for next iteration
+    listModal.close();
+
+    refreshListUI();
 }
 
 export function cancelListAdd(event) {
@@ -75,11 +82,7 @@ export function deleteList(event) {
 
     lists = lists.filter((list) => list.id !== listId);
 
-    listContainer.innerHTML = '';
-    lists.forEach((list) => {
-        let rendered = renderList(list);
-        listContainer.appendChild(rendered);
-    });
+    refreshListUI();
 
     return lists;
 }
@@ -97,9 +100,5 @@ export function confirmEditList(event) {
 
     editListModal.close();
 
-    listContainer.innerHTML = '';
-    lists.forEach((list) => {
-        let rendered = renderList(list);
-        listContainer.appendChild(rendered);
-    });
+    refreshListUI();
 }
