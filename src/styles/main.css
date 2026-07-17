@@ -9,6 +9,12 @@ body {
     margin: 0;
 }
 
+.list-btn {
+    border: none;
+    background: none;
+    font-size: 1.2rem;
+}
+
 .icon {
     width: 1.2rem;
     height: 1.2rem;
