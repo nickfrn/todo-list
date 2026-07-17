@@ -17,12 +17,30 @@ function refreshListUI() {
     });
 }
 
+// Function to initialize Default list
+export function initLists() {
+    if (lists.length === 0) {
+        const defaultList = createList('Default');
+        lists.push(defaultList);
+    }
+
+    refreshListUI();
+}
+
+export function showListModal(event) {
+    if (event.target.id === 'add-list-modal') {
+        listModal.showModal();
+    } else if (event.target.getAttribute('data-type') === 'edit-list') {
+        editListModal.showModal();
+    } 
+}
+
 export function confirmListAdd() {
-    const name = document.querySelector('#list-name').value;
-    const newList = createList(name);
+    const name = document.querySelector('#list-name');
+    const newList = createList(name.value);
 
     lists.push(newList);
-    name = ''; // Clear field for next iteration
+    name.value = ''; // Clear field for next iteration
     listModal.close();
 
     refreshListUI();
@@ -34,13 +52,17 @@ export function cancelListAdd(event) {
 }
 
 export function renderList(list) {
-    const listDiv = document.createElement('div');
-    listDiv.classList.add('list-item');
-    listDiv.setAttribute('data-id', list.id);
+    // Create list item
+    const listItem = document.createElement('div');
+    listItem.classList.add('list-item');
+    listItem.setAttribute('data-id', list.id);
 
-    const listName = document.createElement('h2');;
+    // Add name to list item
+    const listName = document.createElement('button');;
     listName.textContent = list.name;
+    listName.classList.add('list-btn');
 
+    // Add edit and delete icons to the list item
     const iconsDiv = document.createElement('div');
     iconsDiv.classList.add('list-icons');
 
@@ -58,17 +80,9 @@ export function renderList(list) {
     deleteIcon.addEventListener('click', deleteList);
 
     iconsDiv.append(editIcon, deleteIcon);
-    listDiv.append(listName, iconsDiv);
+    listItem.append(listName, iconsDiv);
 
-    return listDiv;
-}
-
-export function showListModal(event) {
-    if (event.target.id === 'add-list-modal') {
-        listModal.showModal();
-    } else if (event.target.getAttribute('data-type') === 'edit-list') {
-        editListModal.showModal();
-    } 
+    return listItem;
 }
 
 export function deleteList(event) {
@@ -84,11 +98,8 @@ export function deleteList(event) {
 
 export function confirmEditList(event) {
     let listItem = event.target.closest('.list-item');
-
     let listId = listItem.getAttribute('data-id');
-
     let listIndex = lists.findIndex(list => list.id === listId);
-
     let newName = document.querySelector('#new-list-name').value;
 
     lists[listIndex].name = newName;
