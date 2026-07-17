@@ -31,6 +31,17 @@ export function showListModal(event) {
     if (event.target.id === 'add-list-modal') {
         listModal.showModal();
     } else if (event.target.getAttribute('data-type') === 'edit-list') {
+        // Find ID of the list item
+        const listItem = event.target.closest('.list-item');
+        const listId = listItem.getAttribute('data-id');
+
+        // Save ID inside the modal element
+        editListModal.setAttribute('data-editing-id', listId);
+
+        // Pre-fill input box with old name
+        const listToEdit = lists.find(list => list.id === listId);
+        document.querySelector('#new-list-name').value = listToEdit.name;
+
         editListModal.showModal();
     } 
 }
@@ -103,13 +114,15 @@ export function deleteList(event) {
 }
 
 export function confirmEditList(event) {
-    let listItem = event.target.closest('.list-item');
-    let listId = listItem.getAttribute('data-id');
-    let listIndex = lists.findIndex(list => list.id === listId);
-    let newName = document.querySelector('#new-list-name').value;
+    event.preventDefault();
 
-    lists[listIndex].name = newName;
+    const listId = editListModal.getAttribute('data-editing-id'); // Read stored ID in modal
+    const listIndex = lists.findIndex(list => list.id === listId);
+    let newName = document.querySelector('#new-list-name');
+    
+    lists[listIndex].name = newName.value;
 
+    newName.value = ''; // Clear field for next iteration
     editListModal.close();
 
     refreshListUI();
