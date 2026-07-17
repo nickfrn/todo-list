@@ -7,9 +7,8 @@ export function createList(name = 'Default') {
     return { id, name, getTasks };
 }
 
-// TODO
-export function createTask(name) {
+export function createTask(title, description, priority, dueDate) {
     const id = crypto.randomUUID();
 
-    return { id };
+    return { id, title, description, priority, dueDate };
 }
