@@ -46,9 +46,15 @@ export function confirmListAdd() {
     refreshListUI();
 }
 
-export function cancelListAdd(event) {
+export function modalCancelBtn(event) {
     event.preventDefault();
-    listModal.close();
+
+    // Find closest dialog to the cancel btn and close it
+    const parentDialog = event.target.closest('dialog');
+
+    if (parentDialog) {
+        parentDialog.close();
+    }
 }
 
 export function renderList(list) {
