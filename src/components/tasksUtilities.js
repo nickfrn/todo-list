@@ -20,9 +20,17 @@ function refreshTasksUI() {
     });
 }
 
+// TODO: Continue from here
  export function confirmTaskAdd() {
+    const title = document.querySelector('#task-title');
+    const desc = document.querySelector('#task-desk');
+    const priority = document.querySelector('#task-priority');
+    const dueDate = document.querySelector('#task-date');
 
+    // TODO: Finish logic
  }
+
+ // TODO
 // cancelModalBtn()
 // renderTasks()
 // deleteTask()
