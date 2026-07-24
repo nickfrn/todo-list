@@ -23,14 +23,14 @@ export function showTaskModal(event) {
     } else if (event.target.getAttribute('data-type') === 'edit-task') {
         // Find ID of the task item
         const taskItem = event.target.closest('.task-item');
-        const taskId = listItem.getAttribute('data-id');
+        const taskId = taskItem.getAttribute('data-id');
 
         // Save ID inside the modal element
         editTaskModal.setAttribute('data-editing-id', taskId);
 
         // Pre-fill input box with old name
         const taskToEdit = tasks.find(task => task.id === taskId);
-        document.querySelector('#new-task-name').value = taskToEdit.name;
+        document.querySelector('#new-task-title').value = taskToEdit.name;
 
         editTaskModal.showModal();
     } 
@@ -101,11 +101,41 @@ function renderTask(task) {
     deleteIcon.addEventListener('click', deleteTask);
 
     iconsDiv.append(editIcon, deleteIcon);
-    taskItem.append(listName, iconsDiv);
+    taskItem.append(taskTitle, iconsDiv);
 
     return taskItem;
 }
 
-// TODO
-// deleteTask()
-// confirmEditTask()
+export function confirmEditTask(event) {
+    event.preventDefault();
+
+    const taskId = editTaskModal.getAttribute('data-editing-id'); // Read stored ID in modal
+    const taskIndex = tasks.findIndex(task => task.id === taskId);
+    let newTitle = document.querySelector('#new-task-title');
+    let newDesc = document.querySelector('#new-task-desc');
+    let newPriority = document.querySelector('#new-task-priority');
+    let newDate = document.querySelector('#new-task-date');
+    
+    tasks[taskIndex].title = newTitle.value;
+    tasks[taskIndex].desc = newDesc.value;
+    tasks[taskIndex].priority = newPriority.value;
+    tasks[taskIndex].dueDate = newDate.value;
+
+    // Clear fields for next iteration
+    newTitle.value = ''; 
+    newDesc.value = '';
+    editTaskModal.close();
+
+    refreshTasksUI();
+}
+
+export function deleteTask(event) {
+    let taskItem = event.target.closest('.task-item');
+    let taskId = taskItem.getAttribute('data-id');
+
+    tasks = tasks.filter((list) => list.id !== taskId);
+
+    refreshTasksUI();
+
+    return tasks;
+}
