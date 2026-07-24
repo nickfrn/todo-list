@@ -22,11 +22,11 @@ export function showTaskModal(event) {
 
  export function confirmTaskAdd() {
     const title = document.querySelector('#task-title');
-    const desc = document.querySelector('#task-desk');
+    const desc = document.querySelector('#task-desc');
     const priority = document.querySelector('#task-priority');
     const dueDate = document.querySelector('#task-date');
 
-    let task = createTask(title, desc, priority, dueDate);
+    let task = createTask(title.value, desc.value, priority.value, dueDate.value);
     tasks.push(task);
 
     // Clean modal parameters and close it
@@ -37,8 +37,39 @@ export function showTaskModal(event) {
     refreshTasksUI();
  }
 
+// !!! cancelModalBtn already impplemented in listUtilities !!!
+
+function renderTask(task) {
+    // Create task item
+    const taskItem = document.createElement('div');
+    taskItem.classList.add('task-item');
+    taskItem.setAttribute('data-id', task.id);
+
+    // Create title element
+    const taskTitle = document.createElement('h2');;
+    taskTitle.textContent = task.title;
+    taskTitle.classList.add('task-title');
+
+    // Create description element
+    const taskDesc = document.createElement('p');;
+    taskDesc.textContent = task.desc;
+    taskDesc.classList.add('task-desc');
+
+    // Create priority element
+    const taskPriority = document.createElement('p');;
+    taskPriority.textContent = task.priority;
+    taskPriority.classList.add('task-priority');
+
+    // Create due date element
+    const taskDate = document.createElement('p');;
+    taskDate.textContent = task.dueDate;
+    taskDate.classList.add('task-date');
+
+    taskItem.append(taskTitle, taskDesc, taskPriority, taskDate);
+
+    return taskItem;
+}
+
 // TODO
-// cancelModalBtn()
-// renderTasks()
 // deleteTask()
 // confirmEditTask()
