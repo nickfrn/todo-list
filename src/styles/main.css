@@ -41,6 +41,6 @@ body {
     justify-content: space-between;
 }
 
-#tasks-container {
+#main-container {
     grid-column: 2 / 3;
 }
