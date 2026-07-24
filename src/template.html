@@ -7,11 +7,11 @@
 </head>
 
 <body>
-    <!-- Dialogs for updating lists and tasks -->
+    <!-- Dialogs for updating lists -->
     <dialog id="createListDialog">
         <form>
             <label for="listName">List name:</label>
-            <input type="text" name="listName" id="list-name">
+            <input type="text" name="listName" id="list-name" required>
 
             <button id="create-list-confirm">Confirm</button>
             <button id="create-list-cancel">Cancel</button>
@@ -20,14 +20,15 @@
 
     <dialog id="editListDialog">
         <form>
-            <label for="newListName">New name:</label>
-            <input type="text" name="newListName" id="new-list-name">
+            <label for="newListName">Name:</label>
+            <input type="text" name="newListName" id="new-list-name" required>
 
             <button id="edit-list-confirm">Confirm</button>
             <button id="edit-list-cancel">Cancel</button>
         </form>
     </dialog>
 
+    <!-- Dialogs for updating tasks -->
     <dialog id="createTaskDialog">
         <form>
             <label for="title">Title:</label>
@@ -48,6 +49,29 @@
 
             <button id="create-task-confirm">Confirm</button>
             <button id="create-task-cancel">Cancel</button>
+        </form>
+    </dialog>
+
+    <dialog id="editTaskDialog">
+        <form>
+            <label for="newTitle">Title:</label>
+            <input type="text" name="newTitle" id="new-task-title" required>
+
+            <label for="newDesc">Description:</label>
+            <input type="text" name="newDesc" id="new-task-desc" required>
+
+            <label for="newPriority">Priority:</label>
+            <select name="newPriority" id="new-task-priority">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+
+            <label for="newDate">Due date:</label>
+            <input type="date" name="newDate" id="new-task-date" required>
+
+            <button id="edit-task-confirm">Confirm</button>
+            <button id="edit-task-cancel">Cancel</button>
         </form>
     </dialog>
 
@@ -74,7 +98,7 @@
 
     <div id="main-container">
         <button id="add-task-btn">Add task</button>
-        
+
         <div id="tasks-container"></div>
     </div>
 </body>
