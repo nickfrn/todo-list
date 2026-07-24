@@ -10,5 +10,11 @@ export function createList(name = 'Default') {
 export function createTask(title, description, priority, dueDate) {
     const id = crypto.randomUUID();
 
-    return { id, title, description, priority, dueDate };
+    return { 
+        id: id, 
+        title: title, 
+        desc: description, 
+        priority: priority, 
+        dueDate: dueDate 
+    };
 }
