@@ -81,8 +81,6 @@ function renderTask(task) {
     taskDate.textContent = task.dueDate;
     taskDate.classList.add('task-date');
 
-    taskItem.append(taskTitle, taskDesc, taskPriority, taskDate);
-
     // Add edit and delete icons to the task item
     const iconsDiv = document.createElement('div');
     iconsDiv.classList.add('list-icons');
@@ -101,7 +99,9 @@ function renderTask(task) {
     deleteIcon.addEventListener('click', deleteTask);
 
     iconsDiv.append(editIcon, deleteIcon);
-    taskItem.append(taskTitle, iconsDiv);
+
+    // Append everything to task item div
+    taskItem.append(taskTitle, taskDesc, taskPriority, taskDate, iconsDiv);
 
     return taskItem;
 }
