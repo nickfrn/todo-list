@@ -1,6 +1,6 @@
 import './styles/main.css';
 import { initLists, showListModal, confirmListAdd, modalCancelBtn, deleteList, confirmEditList } from './components/listUtilities.js';
-import { showTaskModal, confirmTaskAdd, renderTasks } from './components/tasksUtilities.js';
+import { showTaskModal, confirmTaskAdd, renderTasks, confirmEditTask, deleteTask } from './components/tasksUtilities.js';
 
 // Lists selectors
 const listModalBtn = document.querySelector('#add-list-modal');
@@ -12,6 +12,8 @@ const editListCanc = document.querySelector('#edit-list-cancel');
 const taskModalBtn = document.querySelector('#add-task-btn');
 const taskConfirm = document.querySelector('#create-task-confirm');
 const taskCancel = document.querySelector('#create-task-cancel');
+const editTaskConf = document.querySelector('#edit-task-confirm');
+const editTaskCanc = document.querySelector('#edit-task-cancel');
 
 // listener to display modals for adding or editing lists
 listModalBtn.addEventListener('click', showListModal);
@@ -39,5 +41,12 @@ taskConfirm.addEventListener('click', (event) => {
     confirmTaskAdd();
 });
 taskCancel.addEventListener('click', modalCancelBtn);
+
+// Task editing modal listeners
+editTaskConf.addEventListener('click', (event) => {
+    event.preventDefault();
+    confirmEditTask(event);
+});
+editTaskCanc.addEventListener('click', modalCancelBtn);
 
 initLists();
