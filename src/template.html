@@ -46,8 +46,8 @@
             <label for="date">Due date:</label>
             <input type="date" name="date" id="task-date" required>
 
-            <button type="submit">Confirm</button>
-            <button type="button">Cancel</button>
+            <button id="create-task-confirm">Confirm</button>
+            <button id="create-task-cancel">Cancel</button>
         </form>
     </dialog>
 
@@ -72,8 +72,10 @@
         </div>
     </div>
 
-    <div id="tasks-container">
+    <div id="main-container">
         <button id="add-task-btn">Add task</button>
+        
+        <div id="tasks-container"></div>
     </div>
 </body>
 </html>
