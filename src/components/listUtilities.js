@@ -68,7 +68,7 @@ export function modalCancelBtn(event) {
     }
 }
 
-export function renderList(list) {
+function renderList(list) {
     // Create list item
     const listItem = document.createElement('div');
     listItem.classList.add('list-item');
